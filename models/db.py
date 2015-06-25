@@ -85,9 +85,12 @@ db.define_table(
 
 db.define_table(
     'work_hour',
-    Field('quantity', 'integer', default=1),
-    Field('description', 'string', length=256, default='', requires=IS_NOT_EMPTY()),
-    Field('student', 'reference auth_user')
+    Field('quantity', 'integer', default=1, requires=IS_INT_IN_RANGE(1,121)),
+    Field('description', 'text', default='', requires=IS_NOT_EMPTY()),
+    Field('approved', 'boolean', default=False,
+          writable=False, readable=False),
+    Field('student', 'reference auth_user', default=auth.user_id,
+          writable=False, readable=False)
 )
 
 ## do not forget validators

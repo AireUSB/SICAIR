@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+
+{{if total_hours is not None:}}
+<h2><u>{{=T('Total Hours')}}:</u> {{=total_hours}}</h2>
+<h2><u>{{=T('Approved Hours')}}:</u> {{=approved_hours}}</h2>
+{{pass}}
+
+{{if form is not None:}}
+{{=form}}
+{{pass}}
+
+
+
+<h2>Hours</h2>
+{{=table}}
