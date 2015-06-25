@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<h2>{{=T("Users pending for authorization")}}</h2>
+<table class="table">
+    <tr>
+        <th>{{=T("First Name")}}</th> <th>{{=T("Last Name")}}</th> <th>{{=T("Email")}}</th> <th>{{=T("Status")}}</th> <th>{{=T("Approve")}}</th>
+    </tr>
+    {{for user in pending_users:}}
+    <tr>
+        <td>{{=user.first_name}}</td> <td>{{=user.last_name}}</td> <td>{{=user.email}}</td> <td>{{=user.registration_key}}</td> 
+        <td>{{=A(T('Approve'), _href=URL('administrator', 'modify_user', args=user.id))}}</td>
+    </tr>
+    {{pass}}
+</table>

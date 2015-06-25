@@ -1,0 +1,5 @@
+# -*- coding: utf-8 -*-
+db.define_table(
+    'bachelor_degree',
+    Field('name', 'string' length=30, default='')
+)

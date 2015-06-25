@@ -1,0 +1,6 @@
+{{extend 'layout.html'}}
+<h2> {{=T('User')}} </h2>
+{{=form}}
+<hr>
+<h2> {{=T('Membresía')}} </h2>
+{{=membership_panel}}
