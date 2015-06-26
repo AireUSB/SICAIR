@@ -7,7 +7,7 @@
     </tr>
     {{for row in rows:}}
     <tr>
-        <td>{{=row.first_name}}</td> <td>{{=row.last_name}}</td> <td>{{=row.email}}</td> <td>{{=user.registration_key}}</td> 
+        <td>{{=row.first_name}}</td> <td>{{=row.last_name}}</td> <td>{{=row.email}}</td> <td>{{=row.registration_key}}</td> 
         <td>{{=A(T('Approve'), _href=URL('administrator', 'modify_user', args=['authorize', row.id]))}}</td>
     </tr>
     {{pass}}

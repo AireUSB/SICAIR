@@ -2,7 +2,7 @@
 
 def index():
     if auth.has_permission('manage', 'hours'):
-        redirect('hours')
+        redirect('list_hours')
     message = T("Hello world")
     return locals()
 
@@ -28,10 +28,11 @@ def list_hours():
         db.work_hour.student.default = auth.user_id
         form = SQLFORM(db.work_hour).process()
         if form.accepted:
-            response.flash = T("Hours added, wait for approval")
+            session.flash = T("Hours added, wait for approval")
+            redirect(URL())
     if auth.has_permission('approve', 'hours'):
         name = lambda row: row.student.first_name + ' ' + row.student.last_name
-        apr = lambda row: [A(T('Change'), _href=URL('toggle_hour', args=row.id)), name(row)]
+        apr = lambda row: [A(T('Change'), _href=URL('toggle_hour', args=row.id)), A(name(row), _href=URL('administrator', 'manage_user', args=[row.student.id]))]
         headers = headers + [T("Approve"), T("Student")]
     else:
         apr = lambda row: []
@@ -44,6 +45,12 @@ def list_hours():
 @auth.requires_permission('manage', 'hours')
 def manage_hour():
     hour_id = request.args(0) or redirect(URL('list_hours'))
+    hour = db.work_hour(hour_id)
+    if not hour:
+        session.flash = T('Invalid work houts')
+        redirect(URL('list_hours'))
+    if hour.approved:
+        db.work_hour.quantity.writable = False
     form = SQLFORM(db.work_hour, hour_id, deletable=True).process()
     return dict(form=form)
 
@@ -53,6 +60,6 @@ def toggle_hour():
     hour = db.work_hour(hour_id)
     if not hour:
         session.flash = T('Impossible to toggle that hour')
-        redirect(ULR('hours'))
+        redirect(ULR('list_hours'))
     db(db.work_hour.id == hour_id).update(approved=not hour.approved)
-    redirect(URL('hours'))
+    redirect(URL('list_hours'))

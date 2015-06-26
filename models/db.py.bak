@@ -85,7 +85,7 @@ db.define_table(
 
 db.define_table(
     'work_hour',
-    Field('quantity', 'integer', default=1, requires=IS_INT_IN_RANGE(0,120)),
+    Field('quantity', 'integer', default=1, requires=IS_INT_IN_RANGE(1,121)),
     Field('description', 'text', default='', requires=IS_NOT_EMPTY()),
     Field('approved', 'boolean', default=False,
           writable=False, readable=False),
@@ -108,6 +108,7 @@ auth.settings.table_user = custom_auth_table # tell auth to use custom_auth_tabl
 
 ## create all tables needed by auth if not custom tables
 auth.define_tables()
+
 
 ## configure email
 mail = auth.settings.mailer

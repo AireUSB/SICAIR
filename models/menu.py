@@ -34,7 +34,8 @@ response.menu = [
 if auth.has_membership('administrator'):
     response.menu.append( (T('Administration'), False, URL('administrator','index'), [
             (T('Users'), False, URL('administrator','list_users'), []),
-            (T('Pending Users'), False, URL('administrator','pending_users'), [])
+            (T('Pending Users'), False, URL('administrator','pending_users'), []),
+            (T('Catalogs'), False, URL('administrator','catalogs'), [])
         ]) )
 
 DEVELOPMENT_MENU = False

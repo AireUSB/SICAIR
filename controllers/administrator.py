@@ -69,5 +69,7 @@ def manage_membership():
 
 @auth.requires_permission('manage', 'catalogs')
 def catalogs():
-    bachelor_degrees = SQLFORM.grid(db.bachelor_degree)
+    catalogs = {}
+    catalogs[T('Bachelor Degrees')] = SQLFORM.grid(db.bachelor_degree)
+    #catalogs[T('Data Base Name')] = SQLFORM.grid(db.data_base_name)
     return locals()
