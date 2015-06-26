@@ -1,10 +1,11 @@
-Sistema del servicio comunitario AireUSB
+# Sistema del servicio comunitario AireUSB
 
+## Groups
 - name='administrator', description='Administrators of the application'
 - name='coordinator', description='Administrators of a lower level of the application'
 - name='air', description='Aireuesebistas'
 
-# Permissions
+## Permissions
 - group='administrator', name='manage', object='users'
 - group='administrator', name='manage', object='hours'
 - group='administrator', name='approve', object='hours'
@@ -14,14 +15,14 @@ Sistema del servicio comunitario AireUSB
 - group='coordinator', name='approve', object='hours'
 - group='air', name='manage', object='hours'
 
-# Files
+## Files
 
-## Models
+### Models
 
-### db.py
+#### db.py
 Holds the database definition and more information about how should the information, seems more like a configuration file
 
-### menu.py
+#### menu.py
 Configurations, and here we can add menu items to the menu.
 
 ## Controllers
