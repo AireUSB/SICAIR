@@ -1,0 +1,6 @@
+{{extend 'layout.html'}}
+
+{{for name,grid in catalogs:}}
+<h3>{{=name}}</h3>
+{{=grid}}
+{{pass}}
